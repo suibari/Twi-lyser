@@ -1,0 +1,16 @@
+{
+  "name": "twi-lyser",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "suibari",
+  "license": "MIT",
+  "dependencies": {
+    "ioredis": "^4.17.3",
+    "mecab-async": "^0.1.2",
+    "twit": "^2.2.11"
+  }
+}
