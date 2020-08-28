@@ -15,6 +15,9 @@ const stream = twit.stream('statuses/filter',
   }
 );
 
+// DB初期化
+require('./storing.js').init();
+
 // ツイートがあるたびにanalysis.jsを呼び出す
 stream.on('tweet', (tweet) => {
   console.log(tweet.user.name + "> " + tweet.text);
