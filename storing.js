@@ -9,17 +9,18 @@ const MAX_TPS_LENGTH   = 10;    // この数までTPS値をためてから平均
 var obj_tps_tmp       = {};
 var obj_time_prvtweet = {};
 
+// redis初期化関数
 module.exports.init = function () {
   redis.flushall().then(console.log("YUKI.N > successful to reflesh redis."));
 }
 
+// countのsetter
 module.exports.setCount = function (word, teams) {
   teams.forEach((team) => { // teams配列を分解
 
     // count_xxx(team名)とwordの組み合わせがDBにあるか(zscore)
     const key = "count_"+team;
-    redis.zscore(key, word, (res) => {
-      console.log
+    redis.zscore(key, word, (err, res) => {
       if (res != "null") {
         // あるならインクリメント(zincrby)
         redis.zincrby(key, 1, word);
@@ -28,14 +29,19 @@ module.exports.setCount = function (word, teams) {
         redis.zadd(key, 1, word);
       }
     });
-  })
 
-  // count_allのkeyを作成 (全チーム集計値MAX値の和集合(or)をcount_allに設定する)
-  const arr_teams = [
-    "count_baystars", "count_giants", "count_tigers", "count_swallows", "count_dragons", "count_carp", 
-    "count_hawks", "count_lions", "count_buffaloes", "count_eagles", "count_fighters", "count_marines"
-  ];
-  redis.zunionstore("count_all", 12, arr_teams, "AGGREGATE", "MAX");
+    // all用のcountを作る
+    const member = [word, team];
+    redis.zscore("count_all", JSON.stringify(member), (err, res) => {
+      if (res != "null") {
+        // あるならインクリメント
+        redis.zincrby("count_all", 1, JSON.stringify(member));
+      } else {
+        // ないなら追加
+        redis.zadd("count_all", 1, JSON.stringify(member));
+      }
+    })
+  })
 };
 
 //module.exports.getCount = function (team) {
@@ -61,6 +67,7 @@ module.exports.setCount = function (word, teams) {
 //  })
 //}
 
+// TPSのsetter
 module.exports.setTPS = function (teams) {
   // 時間計測する。ツイート時間間隔の配列obj_tps_tmpを操作する
   teams.forEach((team) => { // teams配列を分解
