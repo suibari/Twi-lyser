@@ -106,7 +106,8 @@ module.exports.setTPS = function (teams) {
     }
 
     // 小数点3位までに丸める
-    obj_tps[team] = res.toFixed(3);
+    //obj_tps[team] = res.toFixed(3);
+    obj_tps[team] = res;
   }
   
   // redisに書き込み
