@@ -1,13 +1,13 @@
 ﻿{
   "baystars":  ["#baystars", "横浜優勝", "ベイス"],
-  "giants":    ["#giants", "#kyojin" ,"ジャイアンツ", "読売","うさほー"],
+  "giants":    ["#giants", "#kyojin" ,"ジャイアンツ", "読売", "うさほー"],
   "tigers":    ["#tigers", "#hanshin", "とらほー", "タイガース", "阪神"],
   "swallows":  ["#swallows", "#yakult", "すわほー", "スワローズ"],
   "dragons":   ["#dragons", "#chunichi", "どらほー", "中日", "ドラゴンズ"],
   "carp":      ["#carp", "カープ", "こいほー"],
   "hawks":     ["#hawks", "#sbhawks", "熱男", "たかほー"],
   "lions":     ["#lions", "#seibulions", "ライオンズ", "れおほー"],
-  "buffaloes": ["#buffaloes", "バファローズ", "おりほー"],
+  "buffaloes": ["#buffaloes", "バファローズ", "おりほー", "#bs2021"],
   "eagles":    ["#eagles", "#RakutenEagles", "イーグルス", "わしほー"],
   "fighters":  ["#fighters", "#lovefighters", "日ハム"],
   "marines":   ["#marines", "chibalotte", "マリーンズ", "まりほー"]
